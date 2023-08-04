@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: web-app
+        image: karpovych/express-hello-world:5
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: my-configmap
+
