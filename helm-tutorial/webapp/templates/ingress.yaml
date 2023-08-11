@@ -1,0 +1,22 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-webapp-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+spec:
+  rules:
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+      - path: {{ .Values.ingress.path | default "/" }}
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Release.Name }}-webapp
+            port:
+              number: {{ .Values.service.port }}
+
+{{- end }}

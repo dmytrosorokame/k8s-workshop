@@ -1,0 +1,7 @@
+webapp:
+  image:
+    tag: 7
+  service:
+    port: 3000
+  ingress:
+    enabled: false

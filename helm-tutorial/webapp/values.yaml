@@ -1,0 +1,14 @@
+image:
+  repository: karpovych/express-hello-world
+  tag: 5
+
+replicaCount: 1
+
+service: 
+  port: 3000
+  type: NodePort
+
+ingress:
+  enabled: true
+  host: ''
+  path: /
